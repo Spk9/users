@@ -6,13 +6,14 @@ export class UserFilters extends Component {
         this.handleClick = this.handleClick.bind(this);
         this.reset =this.reset.bind(this);
     }
-
+    //filter users depending on parameter 1- over 5 tickets, 0 - below 5 tickets
     handleClick(param){
         const users = this.props.originalUsers.filter(user => {
             return (param === 1) ? user.ticketsCreated.length > 5 : user.ticketsCreated.length < 5;
         });
         this.props.onClick(users);
     }
+    //reset filters
     reset(){
         this.props.onClick(this.props.originalUsers);
     }

@@ -12,11 +12,11 @@ export class UserPagination extends Component {
     }
 
     render() {
+        //calculate number of pages and add styling to currently active button
         const pages =[];
         for(let i=1; i<=Math.ceil(this.props.users.length/ this.props.usersPerPage); i++){
             pages.push(i);
         }
-
         const renderPages = pages.map(number => {
             return <button
                     className={(this.props.currentPage === number) ? "active": null}

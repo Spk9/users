@@ -21,7 +21,7 @@ export class Users extends Component {
         this.sortDesc = this.sortDesc.bind(this);
         this.filterUsers = this.filterUsers.bind(this);
     }
-
+    //get data from the server
     async componentDidMount(){
         const res = await fetch('/api/users');
         const data = await res.json();
@@ -51,6 +51,7 @@ export class Users extends Component {
     }
 
     render() {
+        //which users to show depending on current page and amount of people per page
         const {users, currentPage, usersPerPage} = this.state;
         const lastUser = currentPage*usersPerPage;
         const firstUser = lastUser - usersPerPage;
@@ -67,6 +68,7 @@ export class Users extends Component {
             </tr>;
         });
 
+        //determine how to sort table
         const sorter = () =>{
           if(this.state.sorted===0 || this.state.sortAsc===0 ){
               return this.sortAsc();
@@ -74,6 +76,15 @@ export class Users extends Component {
               return this.sortDesc();
           }
         };
+        //indicator if table is sorted and how, change to icons in future
+        let icon='';
+        if(this.state.sorted===1){
+            if(this.state.sortAsc===1){
+                icon='asc';
+            }else{
+                icon='desc';
+            }
+        }
 
         return (
             <div className="Users">
@@ -81,7 +92,7 @@ export class Users extends Component {
                 <h4>Average backups: {this.state.avgBackups}</h4>
                 <div className="responsiveTable">
                     <table>
-                        <thead><tr><th>Name</th><th>Company</th><th>Email</th><th>Tickets</th><th>Backups</th><th onClick={sorter}>Join date</th></tr></thead>
+                        <thead><tr><th>Name</th><th>Company</th><th>Email</th><th>Tickets</th><th>Backups</th><th onClick={sorter}>Join date {icon}</th></tr></thead>
                         <tbody>{renderTable}</tbody>
                     </table>
                 </div>
