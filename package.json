@@ -1,0 +1,28 @@
+{
+  "name": "security-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Marek Bielarczyk",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.17.5",
+    "request": "^2.87.0",
+    "should": "^13.2.1"
+  },
+  "dependencies": {
+    "concurrently": "^3.5.1",
+    "express": "^4.16.3",
+    "flexbox": "0.0.3",
+    "react-custom-scroll": "^3.2.1"
+  }
+}
