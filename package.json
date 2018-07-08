@@ -23,6 +23,7 @@
     "concurrently": "^3.5.1",
     "express": "^4.16.3",
     "flexbox": "0.0.3",
+    "font-awesome": "^4.7.0",
     "react-custom-scroll": "^3.2.1"
   }
 }

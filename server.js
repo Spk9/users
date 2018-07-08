@@ -3,8 +3,14 @@ const fs = require('fs');
 const app = express();
 
 app.get('/api/users', (req, res) => {
-    fs.readFile('users.json', 'utf8', (err, data) => {
-        if (err) throw err;
+    fs.readFile('users.json', 'utf8', (err, data, next) => {
+        if (err) {
+            return res.status(500).json({
+                title: 'An error occurred',
+                error: err
+            });
+
+        }
 
         const users = JSON.parse(data);
 

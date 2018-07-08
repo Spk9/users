@@ -22,10 +22,25 @@ export class Users extends Component {
         this.filterUsers = this.filterUsers.bind(this);
     }
     //get data from the server
-    async componentDidMount(){
-        const res = await fetch('/api/users');
-        const data = await res.json();
-        this.setState({users: data.users, avgTickets: data.avgTickets, avgBackups: data.avgBackups, originalUsers: data.users});
+    async componentDidMount() {
+        try {
+            const res = await fetch('/api/users');
+            const data = await res.json();
+            if(data.hasOwnProperty('error')){
+                console.log(data.error.code);
+                return;
+            }
+
+            this.setState({
+                users: data.users,
+                avgTickets: data.avgTickets,
+                avgBackups: data.avgBackups,
+                originalUsers: data.users
+            });
+
+        } catch (e){
+            console.log('error');
+        }
     }
 
     changePage(page){
